@@ -18,6 +18,8 @@ function App() {
   const [products, setProducts] = useState([]);  // productos originales
   const [filtered, setFiltered] = useState([]);  // productos filtrados
   const [search, setSearch] = useState('');  // lo que escribe el usuario
+  const [showStats, setShowStats] = useState(true); // las estadisticas se ven por defecto
+
   // traemos los productos en la app
   useEffect(() => {
     async function getData() {
@@ -51,7 +53,13 @@ function App() {
     <div className="p-6 max-w-xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Explorador de Productos</h1>
       <SearchBar value={search} onChange={setSearch} />
-      <StatsPanel productos={filtered} />
+      <button
+        onClick={() => setShowStats(!showStats)}
+        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        {showStats ? 'Ocultar las estadisticas ' : 'Mostrar las estadisticas '}
+      </button>
+      {showStats && <StatsPanel productos={filtered} />}
       <p className="mb-2 text-sm text-gray-500">Resultados: {filtered.length}</p>
       <ProductList productos={filtered} />
     </div>
