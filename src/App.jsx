@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+/*Creamos los 3 estados necesarios para el buscador.
+
+Llenamos products y filtered con los datos de la API.
+
+filtered será lo que realmente se muestra en pantalla.
+
+search nos servirá en el próximo paso para saber qué escribir.*/
+
+import { useEffect, useState } from 'react';
+import { fetchProducts } from './api/products';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // useState crea variables que React puede "vigilar"
+  const [products, setProducts] = useState([]); // productos originales
+  const [filtered, setFiltered] = useState([]); // productos filtrados
+  const [search, setSearch] = useState('');     // lo que escribe el usuario
+
+  // traemos los productos en la app
+  useEffect(() => {
+    async function getData() {
+      const data = await fetchProducts();
+      setProducts(data);    // datos originales
+      setFiltered(data);    // los usamos para mostrar todo al principio
+    }
+
+    getData();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Explorador de Productos</h1>
+
+      {/* Más adelante acá irá el input de búsqueda y la lista */}
+    </div>
+  );
 }
 
-export default App
+export default App;
