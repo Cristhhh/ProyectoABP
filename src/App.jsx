@@ -11,6 +11,8 @@ import { fetchProducts } from './api/products';
 //importamoslos componentes, los dos
 import SearchBar from './components/SearchBar';
 import ProductList from './components/ProductList';
+import StatsPanel from './components/StatsPanel';
+
 
 function App() {
   const [products, setProducts] = useState([]);  // productos originales
@@ -49,6 +51,7 @@ function App() {
     <div className="p-6 max-w-xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Explorador de Productos</h1>
       <SearchBar value={search} onChange={setSearch} />
+      <StatsPanel productos={filtered} />
       <p className="mb-2 text-sm text-gray-500">Resultados: {filtered.length}</p>
       <ProductList productos={filtered} />
     </div>
