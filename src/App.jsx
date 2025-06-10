@@ -80,8 +80,6 @@ function App() {
         <h1 className="text-2xl font-bold mb-4">Explorador de Productos</h1>
         <SearchBar value={search} onChange={setSearch} />
         {/* filtrado por categoría  ahora podemos elegir una categoría.*/}
-
-        {/* Selects */}
         <select className="mb-4 p-2 border rounded mr-4" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
           <option value="todas">Todas las categorías</option>
           <option value="smartphones">Smartphones</option>
@@ -90,7 +88,7 @@ function App() {
           <option value="skincare">Skincare</option>
           <option value="groceries">Comestibles</option>
         </select>
-
+        {/* orden, ahora podemos ordenar por precio o rating.* */}
         <select className="mb-4 p-2 border rounded" value={orden} onChange={(e) => setOrden(e.target.value)}>
           <option value="ninguna">Sin orden</option>
           <option value="precio asc">Precio: menor a mayor</option>
@@ -98,8 +96,7 @@ function App() {
           <option value="rating asc">Rating: menor a mayor</option>
           <option value="rating desc">Rating: mayor a menor</option>
         </select>
-
-        {/* botones */}
+        {/* buton estadísticas  */}
         <div className="flex gap-2 mb-4">
           <button
             onClick={() => setShowStats(!showStats)}
@@ -108,7 +105,7 @@ function App() {
           >
             {showStats ? 'Ocultar estadisticas' : 'Mostrar estadisticas'}
           </button>
-
+        {/* Botón de modo oscuro */}
           <button
             onClick={() => setModoOscuro(!modoOscuro)}
             className={`px-4 py-2 rounded font-semibold transition-colors duration-200 shadow
@@ -118,7 +115,6 @@ function App() {
           </button>
         </div>
 
-        {/* Mostrar datos */}
         {showStats && <StatsPanel productos={filtered} />}
         <ProductList productos={filtered} />
       </div>
