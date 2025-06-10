@@ -13,4 +13,4 @@ function SearchBar({ value, onChange }) {
 }
 
 export default SearchBar;
-/* Este es un input controlado: lo que se escribe se guarda en el estado search.*/
+/* este es un input controlado: lo que se escribe se guarda en el estado search.*/

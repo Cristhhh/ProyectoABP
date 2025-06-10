@@ -6,6 +6,7 @@ Llenamos products y filtered con los datos de la API.
 filtered será lo que realmente se muestra en pantalla.
 
 search nos servirá en el próximo paso para saber qué escribir.*/
+
 import { useEffect, useState} from 'react';
 import { fetchProducts } from './api/products';
 //importamoslos componentes, los dos
@@ -105,7 +106,7 @@ function App() {
           >
             {showStats ? 'Ocultar estadisticas' : 'Mostrar estadisticas'}
           </button>
-        {/* Botón de modo oscuro */}
+        {/* buton modo oscuro */}
           <button
             onClick={() => setModoOscuro(!modoOscuro)}
             className={`px-4 py-2 rounded font-semibold transition-colors duration-200 shadow

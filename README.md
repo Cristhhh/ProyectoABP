@@ -1,12 +1,47 @@
-# React + Vite
+# Consumir la API DummyJSON, procesar los datos y mostrarlos en una interfaz React con búsqueda y estadísticas.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Explorador de Productos 🛒
 
-Currently, two official plugins are available:
+Proyecto de práctica para la materia **Procesamiento de Datos con APIs REST**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Esta aplicación web permite visualizar, filtrar, buscar y analizar productos utilizando la API de [DummyJSON](https://dummyjson.com/). Fue desarrollada con React y Tailwind CSS de forma incremental, siguiendo buenas prácticas de separación de componentes y estados.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## tecnologias utilizadas
+
+- **React** (Vite)
+- **Tailwind CSS**
+- **Axios**
+- **Recharts**
+- **Git + GitHub**
+
+---
+
+## Estos puntos son los que llegue a implementar
+
+- Llamado a API externa con Axios (`/products?limit=100`)
+- Búsqueda por nombre de producto
+- Filtro por categoría
+- Ordenamiento por precio y rating -asc/desc-
+- Componente de estadísticas: promedio, máximo y mínimo
+- Toggle para mostrar/ocultar estadísticas
+- Modo claro / oscuro (no me salio xD)
+- Estilos con Tailwind aplicados en toda la interfaz
+- Componentes reutilizables: `SearchBar`, `ProductList`, `StatsPanel`, `ChartsPanel`
+
+---
+
+## Como se ejecuta
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/Cristhhh/ProyectoABP.git
+
+
+
+src/api/products.js - archivo para obtener productos desde la api
+
+src/components/ - componenetes que se reutilizan 
+
+src/App.jsx - logica principal con los estados y renderizados

@@ -3,7 +3,7 @@ import ProductItem from './ProductItem';
 
 function ProductList({ productos }) {
   if (productos.length === 0) {
-    return <p className="text-gray-500">Sin coincidencias.</p>;
+    return <p className="text-gray-500">Nada por aqui</p>;
   }
 
   return (
@@ -16,4 +16,4 @@ function ProductList({ productos }) {
 }
 
 export default ProductList;
-/* Muestra todos los productos en una lista. Si no hay coincidencias, muestra un mensaje.*/
+/* muestra todos los productos en una lista. Si no hay coincidencias, muestra un mensaje.*/

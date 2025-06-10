@@ -9,4 +9,4 @@ function ProductItem({ producto }) {
 }
 
 export default ProductItem;
-/*Muestra un solo producto con su título y precio. */
+/*muestra un solo producto con su titulo y precio. */
