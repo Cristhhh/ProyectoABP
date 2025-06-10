@@ -19,6 +19,9 @@ function App() {
   const [filtered, setFiltered] = useState([]);  // productos filtrados
   const [search, setSearch] = useState('');  // lo que escribe el usuario
   const [showStats, setShowStats] = useState(true); // las estadisticas se ven por defecto
+  const [categoria, setCategoria] = useState('todas');
+  const [orden, setOrden] = useState('ninguna');
+
 
   // traemos los productos en la app
   useEffect(() => {
@@ -29,13 +32,33 @@ function App() {
     }
     getData();
   }, []);
-  // Este useEffect se ejecuta cada vez que cambia 'search' o 'products'
+  // useEffect que hace el filtrado
   useEffect(() => {
-    const resultado = products.filter(producto =>
-      producto.title.toLowerCase().includes(search.toLowerCase())
+    let resultado = [...products];
+
+    // filtrado por búsqueda
+    resultado = resultado.filter(p =>
+      p.title.toLowerCase().includes(search.toLowerCase())
     );
+
+    // filtrado pro categorias sino es todas
+    if (categoria !== 'Todas') {
+      resultado = resultado.filter(p => p.category === categoria);
+    }
+
+    // orden
+    if (orden === 'precio asc') {
+      resultado.sort((a, b) => a.price - b.price);
+    } else if (orden === 'precio desc') {
+      resultado.sort((a, b) => b.price - a.price);
+    } else if (orden === 'rating asc') {
+      resultado.sort((a, b) => a.rating - b.rating);
+    } else if (orden === 'rating desc') {
+      resultado.sort((a, b) => b.rating - a.rating);
+    }
+
     setFiltered(resultado);
-  }, [search, products]);
+  }, [search, products, categoria, orden]);
 
         /*products.filter: recorre todos los productos
 
@@ -53,16 +76,41 @@ function App() {
     <div className="p-6 max-w-xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">Explorador de Productos</h1>
       <SearchBar value={search} onChange={setSearch} />
+      {/* filtrado por categoría  ahora podemos elegir una categoría.*/}
+      <select
+        className="mb-4 p-2 border rounded mr-4"
+        value={categoria}
+        onChange={(e) => setCategoria(e.target.value)}
+      >
+        <option value="todas">Todas las categorías</option>
+        <option value="smartphones">Smartphones</option>
+        <option value="laptops">Laptops</option>
+        <option value="fragrances">Fragancias</option>
+        <option value="skincare">Skincare</option>
+        <option value="groceries">Comestibles</option>
+      </select>
+      {/* orden, ahora podemos ordenar por precio o rating.* */}
+      <select
+        className="mb-4 p-2 border rounded"
+        value={orden}
+        onChange={(e) => setOrden(e.target.value)}
+      >
+        <option value="ninguna">Sin orden</option>  
+        <option value="precio asc">Precio: menor a mayor</option>
+        <option value="precio desc">Precio: mayor a menor</option>
+        <option value="rating asc">Rating: menor a mayor</option>
+        <option value="rating desc">Rating: mayor a menor</option>
+      </select>
       <button
         onClick={() => setShowStats(!showStats)}
         className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       >
-        {showStats ? 'Ocultar las estadisticas ' : 'Mostrar las estadisticas '}
+        {showStats ? 'Ocultar estadisticas' : 'Mostrar estadisticas'}
       </button>
       {showStats && <StatsPanel productos={filtered} />}
-      <p className="mb-2 text-sm text-gray-500">Resultados: {filtered.length}</p>
       <ProductList productos={filtered} />
     </div>
+
   );
 }
 

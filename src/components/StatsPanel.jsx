@@ -11,7 +11,7 @@ function StatsPanel({ productos }) {
   return (
     <div className="bg-gray-100 p-4 rounded mb-4">
       <h2 className="text-lg font-semibold mb-2">Estadísticas</h2>
-      <ul className="text-sm">
+      <ul className="text-sm space-y-1">
         <li> Precio promedio: ${promedio}</li>
         <li> Precio mas alto: ${max}</li>
         <li> Precio mas bajo: ${min}</li>
